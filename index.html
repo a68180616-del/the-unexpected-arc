@@ -3,194 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>The Unexpected Arc</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-body {
-    min-height: 100vh;
-    background: #030303;
-    color: white;
-    font-family: Georgia, serif;
-    overflow: hidden;
+body{
+  background:#030303;
+  color:#eee;
+  font-family:Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
 }
 
-/* STAR FIELD */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-        radial-gradient(white 1px, transparent 1px),
-        radial-gradient(#777 1px, transparent 1px);
-    background-size: 90px 90px, 150px 150px;
-    background-position: 20px 30px, 70px 80px;
-    opacity: 0.35;
-    animation: drift 25s linear infinite;
+/* star field */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(#777 1px,transparent 1px),
+    radial-gradient(#444 1px,transparent 1px);
+  background-size:120px 120px,180px 180px;
+  background-position:20px 30px,70px 80px;
+  opacity:.35;
+  pointer-events:none;
 }
 
-@keyframes drift {
-    from { transform: translateY(0); }
-    to { transform: translateY(-150px); }
+.page{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:45px 25px;
+  position:relative;
 }
 
-/* MAIN */
-.container {
-    position: relative;
-    z-index: 2;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 25px;
+.system{
+  letter-spacing:8px;
+  font-size:11px;
+  color:#777;
+  margin-bottom:28px;
 }
 
-.warning {
-    color: #777;
-    letter-spacing: 5px;
-    font-size: 11px;
-    margin-bottom: 25px;
-    animation: fadeIn 2s ease;
+h1{
+  font-size:clamp(48px,12vw,105px);
+  line-height:.88;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  color:white;
+  text-shadow:0 0 25px rgba(255,255,255,.08);
 }
 
-h1 {
-    font-size: clamp(38px, 10vw, 75px);
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    animation: glitch 3s infinite;
+.subtitle{
+  margin-top:38px;
+  max-width:650px;
+  font-size:18px;
+  line-height:1.9;
+  color:#aaa;
 }
 
-.subtitle {
-    margin-top: 25px;
-    color: #aaa;
-    font-size: 17px;
-    line-height: 1.8;
-    max-width: 500px;
+.subtitle span{
+  color:#eee;
 }
 
-.subtitle span {
-    color: white;
+button{
+  margin-top:45px;
+  padding:17px 50px;
+  background:transparent;
+  border:1px solid #666;
+  color:white;
+  letter-spacing:6px;
+  font-size:12px;
+  cursor:pointer;
+  transition:.4s;
 }
 
-.enter {
-    margin-top: 45px;
-    padding: 14px 38px;
-    border: 1px solid #777;
-    background: transparent;
-    color: white;
-    letter-spacing: 4px;
-    cursor: pointer;
-    transition: 0.4s;
+button:hover{
+  background:white;
+  color:black;
+  border-color:white;
+  box-shadow:0 0 30px rgba(255,255,255,.15);
 }
 
-.enter:hover {
-    background: white;
-    color: black;
-    transform: scale(1.05);
+.hidden{
+  display:none;
 }
 
-.secret {
-    display: none;
-    margin-top: 45px;
-    max-width: 600px;
-    animation: reveal 2s ease;
+.second{
+  animation:appear 1.4s ease forwards;
 }
 
-.secret h2 {
-    font-size: 30px;
-    margin-bottom: 20px;
+@keyframes appear{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
-.secret p {
-    color: #bbb;
-    line-height: 1.9;
-    font-size: 17px;
+.small-title{
+  font-size:14px;
+  letter-spacing:6px;
+  color:#777;
+  margin-bottom:35px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.message{
+  max-width:700px;
+  font-size:clamp(22px,5vw,36px);
+  line-height:1.6;
+  color:#eee;
 }
 
-@keyframes reveal {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.message em{
+  color:white;
 }
 
-@keyframes glitch {
-    0%, 90%, 100% {
-        transform: translate(0);
-    }
-    92% {
-        transform: translate(-3px, 2px);
-    }
-    94% {
-        transform: translate(3px, -2px);
-    }
+.line{
+  width:70px;
+  height:1px;
+  background:#555;
+  margin:45px auto;
+}
+
+.final{
+  max-width:650px;
+  font-size:17px;
+  line-height:2;
+  color:#999;
+}
+
+.final strong{
+  display:block;
+  margin-top:30px;
+  color:#eee;
+  font-size:21px;
+  font-weight:normal;
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<section class="page" id="first">
 
-    <div class="warning">
-        [ SYSTEM DETECTED ]
-    </div>
+  <div class="system">[ SYSTEM DETECTED ]</div>
 
-    <h1>THE<br>UNEXPECTED ARC</h1>
+  <h1>
+    THE<br>
+    UNEXPECTED<br>
+    ARC
+  </h1>
 
-    <div class="subtitle">
-        An encounter that wasn't planned.<br>
-        A person who wasn't expected.<br>
-        <span>And somehow... here we are.</span>
-    </div>
+  <p class="subtitle">
+    An encounter that wasn't planned.<br>
+    A person who wasn't expected.<br>
+    <span>And somehow... here we are.</span>
+  </p>
 
-    <button class="enter" onclick="enterWorld()">
-        ENTER
-    </button>
+  <button onclick="enterSite()">ENTER</button>
 
-    <div class="secret" id="secret">
+</section>
 
-        <h2>So... you found it.</h2>
 
-        <p>
-            I could tell you this is just a website.
-            But that would make it sound far less interesting.
-            <br><br>
-            Somewhere between two completely different worlds,
-            two completely different stories,
-            and one very unexpected meeting...
-            <br><br>
-            <strong>you happened.</strong>
-        </p>
+<section class="page hidden second" id="second">
 
-    </div>
+  <div class="small-title">ARCHIVE // 001</div>
 
-</div>
+  <div class="message">
+    So... you found it.
+  </div>
+
+  <div class="line"></div>
+
+  <p class="final">
+    Somewhere between two completely different worlds,
+    two completely different stories,
+    and one completely unexpected meeting...
+    
+    <strong>
+      you happened.
+    </strong>
+  </p>
+
+</section>
+
 
 <script>
-function enterWorld() {
-    document.querySelector(".enter").style.display = "none";
-    document.querySelector(".subtitle").style.display = "none";
-    document.getElementById("secret").style.display = "block";
+function enterSite(){
+  document.getElementById("first").classList.add("hidden");
+  document.getElementById("second").classList.remove("hidden");
 }
 </script>
 
 </body>
-  </html>
+</html>
