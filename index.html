@@ -13,14 +13,12 @@
 }
 
 body{
-  background:#030303;
+  background:#020202;
   color:#eee;
   font-family:Georgia,serif;
-  min-height:100vh;
-  overflow-x:hidden;
+  overflow:hidden;
 }
 
-/* star field */
 body::before{
   content:"";
   position:fixed;
@@ -30,80 +28,30 @@ body::before{
     radial-gradient(#444 1px,transparent 1px);
   background-size:120px 120px,180px 180px;
   background-position:20px 30px,70px 80px;
-  opacity:.35;
+  opacity:.3;
   pointer-events:none;
 }
 
 .page{
   min-height:100vh;
-  display:flex;
-  flex-direction:column;
+  width:100%;
+  display:none;
   align-items:center;
   justify-content:center;
+  flex-direction:column;
   text-align:center;
-  padding:45px 25px;
-  position:relative;
+  padding:35px;
+  animation:fade 1s ease;
 }
 
-.system{
-  letter-spacing:8px;
-  font-size:11px;
-  color:#777;
-  margin-bottom:28px;
+.page.active{
+  display:flex;
 }
 
-h1{
-  font-size:clamp(48px,12vw,105px);
-  line-height:.88;
-  letter-spacing:5px;
-  text-transform:uppercase;
-  color:white;
-  text-shadow:0 0 25px rgba(255,255,255,.08);
-}
-
-.subtitle{
-  margin-top:38px;
-  max-width:650px;
-  font-size:18px;
-  line-height:1.9;
-  color:#aaa;
-}
-
-.subtitle span{
-  color:#eee;
-}
-
-button{
-  margin-top:45px;
-  padding:17px 50px;
-  background:transparent;
-  border:1px solid #666;
-  color:white;
-  letter-spacing:6px;
-  font-size:12px;
-  cursor:pointer;
-  transition:.4s;
-}
-
-button:hover{
-  background:white;
-  color:black;
-  border-color:white;
-  box-shadow:0 0 30px rgba(255,255,255,.15);
-}
-
-.hidden{
-  display:none;
-}
-
-.second{
-  animation:appear 1.4s ease forwards;
-}
-
-@keyframes appear{
+@keyframes fade{
   from{
     opacity:0;
-    transform:translateY(25px);
+    transform:translateY(18px);
   }
   to{
     opacity:1;
@@ -111,98 +59,227 @@ button:hover{
   }
 }
 
-.small-title{
-  font-size:14px;
-  letter-spacing:6px;
+.system{
   color:#777;
+  font-size:10px;
+  letter-spacing:7px;
+  margin-bottom:30px;
+}
+
+h1{
+  font-size:clamp(48px,12vw,100px);
+  line-height:.9;
+  letter-spacing:4px;
+}
+
+p{
+  max-width:650px;
+  line-height:1.9;
+}
+
+.sub{
+  margin-top:35px;
+  color:#999;
+  font-size:17px;
+}
+
+button{
+  margin-top:42px;
+  padding:15px 42px;
+  background:transparent;
+  border:1px solid #555;
+  color:#eee;
+  letter-spacing:5px;
+  cursor:pointer;
+  transition:.4s;
+}
+
+button:hover{
+  background:#eee;
+  color:#000;
+}
+
+.label{
+  color:#666;
+  letter-spacing:6px;
+  font-size:11px;
   margin-bottom:35px;
 }
 
-.message{
-  max-width:700px;
-  font-size:clamp(22px,5vw,36px);
-  line-height:1.6;
-  color:#eee;
+.big{
+  font-size:clamp(28px,7vw,55px);
+  line-height:1.35;
+  max-width:750px;
 }
 
-.message em{
-  color:white;
+.muted{
+  color:#888;
+  margin-top:30px;
+  font-size:16px;
 }
 
 .line{
   width:70px;
   height:1px;
   background:#555;
-  margin:45px auto;
+  margin:38px 0;
+}
+
+.quote{
+  max-width:700px;
+  font-size:clamp(22px,5vw,38px);
+  line-height:1.55;
+}
+
+.small{
+  color:#777;
+  margin-top:30px;
+  font-size:14px;
 }
 
 .final{
-  max-width:650px;
-  font-size:17px;
-  line-height:2;
-  color:#999;
+  font-size:clamp(25px,6vw,48px);
+  line-height:1.5;
+  max-width:750px;
 }
 
-.final strong{
-  display:block;
-  margin-top:30px;
-  color:#eee;
-  font-size:21px;
-  font-weight:normal;
+.final span{
+  color:#777;
 }
+
 </style>
 </head>
 
 <body>
 
-<section class="page" id="first">
-
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
   <div class="system">[ SYSTEM DETECTED ]</div>
 
-  <h1>
-    THE<br>
-    UNEXPECTED<br>
-    ARC
-  </h1>
+  <h1>THE<br>UNEXPECTED<br>ARC</h1>
 
-  <p class="subtitle">
+  <p class="sub">
     An encounter that wasn't planned.<br>
     A person who wasn't expected.<br>
-    <span>And somehow... here we are.</span>
+    And somehow... here we are.
   </p>
 
-  <button onclick="enterSite()">ENTER</button>
-
+  <button onclick="next(2)">ENTER</button>
 </section>
 
 
-<section class="page hidden second" id="second">
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+  <div class="label">ARCHIVE // 001</div>
 
-  <div class="small-title">ARCHIVE // 001</div>
-
-  <div class="message">
+  <div class="big">
     So... you found it.
   </div>
 
   <div class="line"></div>
 
-  <p class="final">
-    Somewhere between two completely different worlds,
-    two completely different stories,
-    and one completely unexpected meeting...
-    
-    <strong>
-      you happened.
-    </strong>
+  <p class="muted">
+    I could tell you this is just a website.<br>
+    But that would make it far less interesting.
   </p>
 
+  <button onclick="next(3)">CONTINUE</button>
+</section>
+
+
+<!-- PAGE 3 -->
+<section class="page" id="page3">
+  <div class="label">ERROR // UNEXPECTED ATTACHMENT</div>
+
+  <div class="quote">
+    "I never expected you to become<br>
+    someone I'd think about this much."
+  </div>
+
+  <div class="line"></div>
+
+  <p class="small">
+    Some people arrive quietly.<br>
+    Somehow, they still change everything.
+  </p>
+
+  <button onclick="next(4)">NEXT</button>
+</section>
+
+
+<!-- PAGE 4 -->
+<section class="page" id="page4">
+  <div class="label">SYSTEM LOG // 004</div>
+
+  <div class="big">
+    You weren't supposed<br>
+    to become a chapter.
+  </div>
+
+  <div class="line"></div>
+
+  <p class="muted">
+    You were supposed to be a coincidence.<br>
+    A passing moment.<br>
+    Nothing more.
+  </p>
+
+  <button onclick="next(5)">KEEP GOING</button>
+</section>
+
+
+<!-- PAGE 5 -->
+<section class="page" id="page5">
+  <div class="label">UNRESOLVED // 005</div>
+
+  <div class="quote">
+    And yet...
+    <br><br>
+    here you are.
+  </div>
+
+  <div class="line"></div>
+
+  <p class="muted">
+    Somewhere between two completely different worlds,
+    two completely different stories,
+    and one very unexpected meeting...
+  </p>
+
+  <button onclick="next(6)">ONE LAST THING</button>
+</section>
+
+
+<!-- PAGE 6 -->
+<section class="page" id="page6">
+  <div class="label">FINAL ENTRY</div>
+
+  <div class="final">
+    Maybe the strangest part
+    <br>
+    wasn't meeting you.
+    <br><br>
+    <span>It was how naturally you became</span>
+    <br>
+    part of my story.
+  </div>
+
+  <div class="line"></div>
+
+  <p class="small">
+    END OF ARCHIVE
+  </p>
 </section>
 
 
 <script>
-function enterSite(){
-  document.getElementById("first").classList.add("hidden");
-  document.getElementById("second").classList.remove("hidden");
+function next(number){
+
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page"+number).classList.add("active");
 }
 </script>
 
