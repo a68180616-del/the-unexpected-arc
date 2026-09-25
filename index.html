@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>The Unexpected Arc</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: #030303;
+    color: white;
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* STAR FIELD */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(white 1px, transparent 1px),
+        radial-gradient(#777 1px, transparent 1px);
+    background-size: 90px 90px, 150px 150px;
+    background-position: 20px 30px, 70px 80px;
+    opacity: 0.35;
+    animation: drift 25s linear infinite;
+}
+
+@keyframes drift {
+    from { transform: translateY(0); }
+    to { transform: translateY(-150px); }
+}
+
+/* MAIN */
+.container {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+}
+
+.warning {
+    color: #777;
+    letter-spacing: 5px;
+    font-size: 11px;
+    margin-bottom: 25px;
+    animation: fadeIn 2s ease;
+}
+
+h1 {
+    font-size: clamp(38px, 10vw, 75px);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    animation: glitch 3s infinite;
+}
+
+.subtitle {
+    margin-top: 25px;
+    color: #aaa;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 500px;
+}
+
+.subtitle span {
+    color: white;
+}
+
+.enter {
+    margin-top: 45px;
+    padding: 14px 38px;
+    border: 1px solid #777;
+    background: transparent;
+    color: white;
+    letter-spacing: 4px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.enter:hover {
+    background: white;
+    color: black;
+    transform: scale(1.05);
+}
+
+.secret {
+    display: none;
+    margin-top: 45px;
+    max-width: 600px;
+    animation: reveal 2s ease;
+}
+
+.secret h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.secret p {
+    color: #bbb;
+    line-height: 1.9;
+    font-size: 17px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glitch {
+    0%, 90%, 100% {
+        transform: translate(0);
+    }
+    92% {
+        transform: translate(-3px, 2px);
+    }
+    94% {
+        transform: translate(3px, -2px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="warning">
+        [ SYSTEM DETECTED ]
+    </div>
+
+    <h1>THE<br>UNEXPECTED ARC</h1>
+
+    <div class="subtitle">
+        An encounter that wasn't planned.<br>
+        A person who wasn't expected.<br>
+        <span>And somehow... here we are.</span>
+    </div>
+
+    <button class="enter" onclick="enterWorld()">
+        ENTER
+    </button>
+
+    <div class="secret" id="secret">
+
+        <h2>So... you found it.</h2>
+
+        <p>
+            I could tell you this is just a website.
+            But that would make it sound far less interesting.
+            <br><br>
+            Somewhere between two completely different worlds,
+            two completely different stories,
+            and one very unexpected meeting...
+            <br><br>
+            <strong>you happened.</strong>
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+function enterWorld() {
+    document.querySelector(".enter").style.display = "none";
+    document.querySelector(".subtitle").style.display = "none";
+    document.getElementById("secret").style.display = "block";
+}
+</script>
+
+</body>
+  </html>
